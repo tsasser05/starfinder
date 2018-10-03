@@ -20,8 +20,17 @@ func main() {
 		fmt.Println("Incorrect number of args.  Call this program with max, num")
 		os.Exit(3)
 	} // if
-	
+
+
 	roll := dieroll.Roll(max, num)
+	fmt.Println("-------------------------------------------------------")
+	fmt.Println("Test 1: dieroll.Roll(", max, ", ", num, ")")
+	fmt.Println("-------------------------------------------------------")
 	fmt.Println("The roll total was:  ", roll, "\n")
 
+	fmt.Println("-------------------------------------------------------")
+	fmt.Println("Test 2: dieroll.RollStat()")
+	fmt.Println("-------------------------------------------------------")
+	fmt.Println("The stat rolled was:  ", dieroll.RollStat())
+	
 } // main()

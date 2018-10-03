@@ -1,10 +1,11 @@
 package dieroll
 
 import (
-	"time"
 	"fmt"
 	"math/rand"
 	"os"
+	"sort"
+	"time"
 )
 
 
@@ -75,7 +76,9 @@ func randomInt(max int) int {
 
 func Roll (max int, num int) int {
 	sum := 0
-	debug := 1
+
+	// yeah, i know
+	debug := 0
 	
 	// max must be 5 for d4, 7 for d6, 9 for d8, 11 for d10, 13 for d12 and 21 for d20
         // max += 1
@@ -96,7 +99,7 @@ func Roll (max int, num int) int {
 		sum = randomInt(max) 
 
 		if debug > 0 {
-			fmt.Println("dieroll.Roll() number rolled is ", sum, "\n")
+			fmt.Println("dieroll.Roll() number rolled is ", sum)
 		} // if
 
 	} else if num > 1 {
@@ -106,24 +109,24 @@ func Roll (max int, num int) int {
 			new_num := randomInt(max)
 
 			if debug > 0 {
-				fmt.Println("dieroll.Roll() number rolled is ", new_num, "\n")
+				fmt.Println("dieroll.Roll() number rolled is ", new_num)
 			} // if
 			
 			sum += new_num
 			count += 1
 
 			if debug > 0 {
-				fmt.Println("dieroll.Roll() sum is ", sum, "\n")
+				fmt.Println("dieroll.Roll() sum is ", sum)
 			} // debug
 			
 		} // for
 
 		if debug > 0 {
-			fmt.Println("dieroll.Roll() final sum is ", sum, "\n")
+			fmt.Println("dieroll.Roll() final sum is ", sum)
 		} // debug
 		
 	} else {
-		fmt.Println("dieroll.Roll: Incorrect number of dice passed to function: ", num, "\n")
+		fmt.Println("dieroll.Roll: Incorrect number of dice passed to function: ", num)
 		os.Exit(3)
 	} // if
 
@@ -140,9 +143,46 @@ func Roll (max int, num int) int {
 * 
 *******************************************************/
 
-//func RollStat() int {
-//	rolls := [...]int{}
+func RollStat() int {
+	rolls := make([]int, 4, 4)
 
-//} // RollStat()
+	// yeah, i know
+	debug := 1
+	
+	// d6 uses 7 in randomInt
+	max := 7
+	i := 0
+
+	for i < 4 {
+		roll := randomInt(max)
+		rolls[i] = roll
+		i++
+	} 
+
+	if debug > 0 {
+		fmt.Println("Content of rolls prior to sorting:  ", rolls)
+	} // if
+	
+	sort.Ints(rolls)
+
+	if debug > 0 {
+		fmt.Println("Content of rolls after sorting:  ", rolls)
+	} // if
+
+	sliced_rolls := rolls[1:]
+
+	if debug > 0 {
+		fmt.Println("Content of sliced_rolls after pruning:  ", sliced_rolls)
+	} // if
+	
+	sum := 0
+
+	for _, roll := range sliced_rolls {
+		sum += roll
+	} // for
+
+	return sum
+	
+} // RollStat()
 	
 
