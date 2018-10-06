@@ -184,5 +184,29 @@ func RollStat() int {
 	return sum
 	
 } // RollStat()
-	
 
+
+/*******************************************************
+*
+* RandomKey()
+*
+* Returns a random key in a map.
+*
+*******************************************************/
+
+func RandomKey (m map[string]string) string {
+	// TBD
+	// Don't use until you understand this:
+	//
+	// keys := reflect.ValueOf(mapI).MapKeys()
+	// return keys[rand.Intn(len(keys))].Interface()
+
+	keys := make([]string, 0, len(m))
+
+	for k := range m {
+		keys = append(keys, k)
+	} // for
+
+	return keys[rand.Intn(len(keys))]
+	
+} // RandomKey()
