@@ -69,6 +69,14 @@ func main() {
 		counts_by_race[cbr] = 0
 
 	} // for
+
+	fmt.Println("Verify that all races are initialized to zero.")
+
+	for key, val := range counts_by_race {
+		fmt.Printf("\t%s = %d\n", key, val)
+	} // for
+
+	fmt.Println("\nVerify that race distribution:")
 	
 	race_count := 0
 	
