@@ -8,7 +8,6 @@ import (
 	"time"
 )
 
-
 /*******************************************************
 *
 * contains(valid, max)
@@ -24,11 +23,10 @@ func contains(valid [7]int, max int) bool {
 			return true
 		} // if
 	} // for
-	
+
 	return false
 
 } // contains()
-
 
 /*******************************************************
 *
@@ -42,7 +40,6 @@ func init() {
 
 } // init
 
-
 /*******************************************************
 *
 * randomInt(max)
@@ -51,10 +48,9 @@ func init() {
 
 func randomInt(max int) int {
 	min := 1
-	return min + rand.Intn(max - min) 
+	return min + rand.Intn(max-min)
 
 } // randomInt()
-
 
 /*******************************************************
 * roll (max, num)
@@ -65,7 +61,7 @@ func randomInt(max int) int {
 * Returns either the number if only one die was rolled
 * or the sum of all dice
 *
-* Max must be equal to 4, 6, 8, 10, 12, 20 or 100.  The 
+* Max must be equal to 4, 6, 8, 10, 12, 20 or 100.  The
 * function will handle the details for rand.Intn itself.
 *
 * TBD:
@@ -74,16 +70,16 @@ func randomInt(max int) int {
 *
 *******************************************************/
 
-func Roll (max int, num int) int {
+func Roll(max int, num int) int {
 	sum := 0
 
 	// yeah, i know
 	debug := 0
-	
+
 	// max must be 5 for d4, 7 for d6, 9 for d8, 11 for d10, 13 for d12 and 21 for d20
-        // max += 1
+	// max += 1
 	// Limited to the following:
-	var valid = [7]int{4, 6, 8, 10, 12, 20, 100} 
+	var valid = [7]int{4, 6, 8, 10, 12, 20, 100}
 
 	valid_check := contains(valid, max)
 
@@ -94,9 +90,9 @@ func Roll (max int, num int) int {
 
 	// Increment max by one for randomInt calculation.
 	max += 1
-	
+
 	if num == 1 {
-		sum = randomInt(max) 
+		sum = randomInt(max)
 
 		if debug > 0 {
 			fmt.Println("dieroll.Roll() number rolled is ", sum)
@@ -104,43 +100,42 @@ func Roll (max int, num int) int {
 
 	} else if num > 1 {
 		count := 0
-		
+
 		for count < num {
 			new_num := randomInt(max)
 
 			if debug > 0 {
 				fmt.Println("dieroll.Roll() number rolled is ", new_num)
 			} // if
-			
+
 			sum += new_num
 			count += 1
 
 			if debug > 0 {
 				fmt.Println("dieroll.Roll() sum is ", sum)
 			} // debug
-			
+
 		} // for
 
 		if debug > 0 {
 			fmt.Println("dieroll.Roll() final sum is ", sum)
 		} // debug
-		
+
 	} else {
 		fmt.Println("dieroll.Roll: Incorrect number of dice passed to function: ", num)
 		os.Exit(3)
 	} // if
 
 	return sum
-	
-} // roll()
 
+} // roll()
 
 /*******************************************************
 *
 * RollStat()
 *
 * Rolls 4d6 for a stat and takes the top 3
-* 
+*
 *******************************************************/
 
 func RollStat() int {
@@ -148,7 +143,7 @@ func RollStat() int {
 
 	// yeah, i know
 	debug := 1
-	
+
 	// d6 uses 7 in randomInt
 	max := 7
 	i := 0
@@ -157,12 +152,12 @@ func RollStat() int {
 		roll := randomInt(max)
 		rolls[i] = roll
 		i++
-	} 
+	}
 
 	if debug > 0 {
 		fmt.Println("Content of rolls prior to sorting:  ", rolls)
 	} // if
-	
+
 	sort.Ints(rolls)
 
 	if debug > 0 {
@@ -174,7 +169,7 @@ func RollStat() int {
 	if debug > 0 {
 		fmt.Println("Content of sliced_rolls after pruning:  ", sliced_rolls)
 	} // if
-	
+
 	sum := 0
 
 	for _, roll := range sliced_rolls {
@@ -182,9 +177,8 @@ func RollStat() int {
 	} // for
 
 	return sum
-	
-} // RollStat()
 
+} // RollStat()
 
 /*******************************************************
 *
@@ -194,7 +188,7 @@ func RollStat() int {
 *
 *******************************************************/
 
-func RandomKey (m map[string]string) string {
+func RandomKey(m map[string]string) string {
 	// TBD
 	// Don't use until you understand this:
 	//
@@ -208,5 +202,5 @@ func RandomKey (m map[string]string) string {
 	} // for
 
 	return keys[rand.Intn(len(keys))]
-	
+
 } // RandomKey()
