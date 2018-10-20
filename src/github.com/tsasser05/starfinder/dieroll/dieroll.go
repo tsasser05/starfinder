@@ -44,6 +44,8 @@ func init() {
 *
 * randomInt(max)
 *
+* Returns a random integer between 1 and max.
+*
 *******************************************************/
 
 func randomInt(max int) int {

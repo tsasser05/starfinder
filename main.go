@@ -5,6 +5,7 @@ import (
 	"os"
 	"strconv"
 	"github.com/tsasser05/starfinder/abilities"
+	"github.com/tsasser05/starfinder/class"
 	"github.com/tsasser05/starfinder/dieroll"
 )
 
@@ -98,6 +99,15 @@ func main() {
 	abil := abilities.Abilities{}
 	abil.Roll()
 	abil.Display()
+
+	fmt.Println("\n")
+	fmt.Println("-------------------------------------------------------")
+	fmt.Println("Test 6: Test Classes") 
+	fmt.Println("-------------------------------------------------------")
+
+	charClass := class.Class{}
+	charClass.Roll()
+	charClass.Display()
 	
 	fmt.Println("\n")
 	fmt.Println("-------------------------------------------------------")
