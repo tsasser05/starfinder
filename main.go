@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-
+	"github.com/tsasser05/starfinder/abilities"
 	"github.com/tsasser05/starfinder/dieroll"
 )
 
@@ -43,7 +43,7 @@ func main() {
 
 	fmt.Println("\n")
 	fmt.Println("-------------------------------------------------------")
-	fmt.Println("Test 3: dieroll.RandomMap()")
+	fmt.Println("Test 3: dieroll.RandomKey()")
 	fmt.Println("-------------------------------------------------------")
 
 	races := map[string]string{
@@ -60,7 +60,7 @@ func main() {
 
 	fmt.Println("\n")
 	fmt.Println("-------------------------------------------------------")
-	fmt.Println("Test 4: dieroll.RandomMap() -> Verification of randomness of keys")
+	fmt.Println("Test 4: dieroll.RandomKey() -> Verification of randomness of keys")
 	fmt.Println("-------------------------------------------------------")
 
 	counts_by_race := make(map[string]int)
@@ -80,7 +80,7 @@ func main() {
 
 	race_count := 0
 
-	for race_count < 100 {
+	for race_count < 500 {
 		element := dieroll.RandomKey(races)
 		counts_by_race[element]++
 		race_count++
@@ -90,6 +90,15 @@ func main() {
 		fmt.Printf("\t%s = %d\n", key, val)
 	} // for
 
+	fmt.Println("\n")
+	fmt.Println("-------------------------------------------------------")
+	fmt.Println("Test 5: Test Abilities") 
+	fmt.Println("-------------------------------------------------------")
+
+	abil := abilities.Abilities{}
+	abil.Roll()
+	abil.Display()
+	
 	fmt.Println("\n")
 	fmt.Println("-------------------------------------------------------")
 	fmt.Println("End testing")
